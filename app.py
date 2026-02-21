@@ -39,10 +39,16 @@ h1, h2, h3 { color: #38bdf8 !important; font-weight: 700; }
 # -----------------------------
 # Load Model Details
 # -----------------------------
-model, features_list, metrics = load_model_and_metrics()
+try:
+    model, features_list, metrics = load_model_and_metrics()
+except Exception as e:
+    st.error(f"XGBoost Kernel Error: {e}")
+    import traceback
+    st.code(traceback.format_exc())
+    st.stop()
 
 if model is None:
-    st.error("Model architectures are missing. Execute `python model_training.py` within the root directory.")
+    st.warning("🧪 XGBoost artifacts missing. Run `python model_training.py` in this directory.")
     st.stop()
 
 
