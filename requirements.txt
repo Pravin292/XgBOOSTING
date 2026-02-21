@@ -4,4 +4,7 @@ streamlit
 plotly
 numpy
 joblib
+scipy
+matplotlib
+seaborn
 xgboost

@@ -5,8 +5,6 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from utils import load_model_and_metrics, generate_feature_importance_plot
-
 # -----------------------------
 # Page Configuration
 # -----------------------------
@@ -15,6 +13,16 @@ st.set_page_config(
     page_icon="🩺",
     layout="wide"
 )
+
+# -----------------------------
+# Fail-Safe Resource Loading
+# -----------------------------
+try:
+    from utils import load_model_and_metrics, generate_feature_importance_plot
+except Exception as e:
+    st.error(f"⚠️ Critical Module Failure: {e}")
+    st.info("Ensure all dependencies in requirements.txt are installed.")
+    st.stop()
 
 # -----------------------------
 # Custom Styling "Midnight Glass"
